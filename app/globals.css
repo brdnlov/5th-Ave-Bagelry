@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F3E8D7;
+  --foreground: #3A2B22;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-brand-charcoal: #211C19;
+  --color-brand-red: #C1442D;
+  --color-brand-tan: #D99B5A;
+  --color-brand-cream: #F3E8D7;
+  --color-brand-brown: #3A2B22;
+
+  --font-sans: var(--font-kumbh);
+  --font-display: var(--font-bevan);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* "Bite" hover interaction — a notch appears out of the top-right
+   corner on hover, echoing the bitten bagel in the logo. Uses a true
+   mask cutout (not a painted circle) so it reveals whatever is
+   actually behind the element. Sized to cut past a pill button's own
+   border-radius curve so the notch stays visible even with no sharp
+   corner to bite into. */
+@property --bite-radius {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@layer components {
+  .bite-hover {
+    --bite-radius: 0px;
+    display: inline-block;
+    mask-mode: alpha;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-image: radial-gradient(
+      circle at calc(100% + 0.1rem) -0.1rem,
+      transparent var(--bite-radius),
+      white calc(var(--bite-radius) + 1px)
+    );
+    -webkit-mask-image: radial-gradient(
+      circle at calc(100% + 0.1rem) -0.1rem,
+      transparent var(--bite-radius),
+      white calc(var(--bite-radius) + 1px)
+    );
+    transition: --bite-radius 0.25s ease;
+  }
+
+  .bite-hover:hover,
+  .bite-hover:focus-visible {
+    --bite-radius: 1.6rem;
+  }
+}
+
