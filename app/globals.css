@@ -39,27 +39,39 @@ body {
 
 @layer components {
   .bite-hover {
-    --bite-radius: 0px;
+  --bite-radius: 0px;
     display: inline-block;
     mask-mode: alpha;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     mask-image: radial-gradient(
-      circle at calc(100% + 0.1rem) -0.1rem,
-      transparent var(--bite-radius),
-      white calc(var(--bite-radius) + 1px)
-    );
-    -webkit-mask-image: radial-gradient(
-      circle at calc(100% + 0.1rem) -0.1rem,
-      transparent var(--bite-radius),
-      white calc(var(--bite-radius) + 1px)
-    );
+    circle at calc(100% + 0.1rem) -0.1rem,
+    transparent var(--bite-radius),
+    white calc(var(--bite-radius) + 1px)
+);
+  -webkit-mask-image: radial-gradient(
+    circle at calc(100% + 0.1rem) -0.1rem,
+    transparent var(--bite-radius),
+    white calc(var(--bite-radius) + 1px)
+);
+
     transition: --bite-radius 0.25s ease;
   }
 
   .bite-hover:hover,
   .bite-hover:focus-visible {
-    --bite-radius: 1.6rem;
+    --bite-radius: 1.3rem;
+  }
+}
+
+/* Gentle bob for the hero's floating photo cards. */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
   }
 }
 
