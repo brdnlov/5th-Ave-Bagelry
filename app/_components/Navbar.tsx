@@ -36,7 +36,7 @@ export default function Navbar() {
                         <li key={link.href}>
                             <a
                                 href={link.href}
-                                className="text-brand-brown transition-colors hover:text-brand-red"
+                                className="inline-block py-3 text-brand-brown transition-colors hover:text-brand-red"
                             >
                                 {link.label}
                             </a>
@@ -46,14 +46,14 @@ export default function Navbar() {
 
                 <a
                     href="tel:+15624996889"
-                    className="bite-hover hidden rounded-full bg-brand-red px-5 py-2 text-brand-cream md:block"
+                    className="bite-hover hidden min-h-12 items-center rounded-full bg-brand-red px-6 py-3 text-brand-cream md:block"
                 >
                     Call Now
                 </a>
 
                 {/* Mobile Navigation */}
                 <button
-                    className="flex flex-col gap-1.5 md:hidden"
+                    className="-mr-2 flex min-h-12 min-w-12 flex-col items-center justify-center gap-1.5 p-2 md:hidden"
                     aria-label="Toggle menu"
                     aria-expanded={isOpen}
                     onClick={() => setIsOpen((open) => !open)}
@@ -72,12 +72,12 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <ul className="flex flex-col items-center gap-6 bg-brand-cream py-8 md:hidden">
+                <ul className="absolute inset-x-0 top-full flex flex-col items-center gap-6 bg-brand-cream py-8 shadow-lg md:hidden">
                     {NAV_LINKS.map((link) => (
                         <li key={link.href}>
                             <a
                                 href={link.href}
-                                className="text-lg text-brand-brown"
+                                className="block px-6 py-2 text-lg text-brand-brown"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {link.label}
@@ -87,7 +87,7 @@ export default function Navbar() {
                     <li>
                         <a
                             href="tel:+15624996889"
-                            className="rounded-full bg-brand-red px-5 py-2 text-brand-cream"
+                            className="inline-flex min-h-12 items-center px-6 py-3 rounded-full bg-brand-red text-brand-cream"
                         >
                             Call Now
                         </a>

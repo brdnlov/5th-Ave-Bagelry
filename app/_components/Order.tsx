@@ -42,7 +42,7 @@ export default function Order() {
                                     href={option.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="bite-hover rounded-full bg-brand-red px-6 py-2 text-brand-cream"
+                                    className="bite-hover rounded-full bg-brand-red inline-flex min-h-12 items-center px-6 py-3 text-brand-cream"
                                 >
                                     Order Now
                                 </a>
