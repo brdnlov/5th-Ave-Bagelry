@@ -15,7 +15,7 @@ const bevan = Bevan({
 });
 
 export const metadata: Metadata = {
-  title: "5th Ave Bagelry",
+  title: "5th Ave Bagelry Long Beach",
   description: "5th Ave Bagelry - fresh bagels in Downtown Long Beach.",
 };
 
