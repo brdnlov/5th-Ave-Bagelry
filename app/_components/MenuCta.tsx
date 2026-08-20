@@ -1,12 +1,40 @@
-import Image from "next/image";
 import Link from "next/link";
+import MenuSlideshow, { type Slide } from "./MenuSlideshow";
 
-/* The homepage's pointer at /menu. The full menu is 113 items across five
-   boards, which is why it lives on its own route — this section's whole
-   job is to make that worth a click, not to reproduce any of it.
+/* Five plates, taking turns. This was one photo, then briefly four floating
+   cards around it — the cards read as clutter beside a copy block, so the
+   same photos now rotate in a single frame instead of competing for space
+   around it. Each is a different part of the menu, which is exactly the
+   point this section is making. */
+const SLIDES: Slide[] = [
+    {
+        src: "/images/sausage-bacon-egg-cheese-croissant.jpg",
+        alt: "A 5th Ave Bagelry sausage bacon egg and cheese croissant.",
+    },
+    {
+        src: "/images/heavenly-veggie-sandwich.jpg",
+        alt: "A heavenly veggie sandwich at 5th Ave Bagelry",
+    },
+    {
+        src: "/images/ham-egg-cheese-jalapeno-bagel.jpg",
+        alt: "Ham, egg and cheese on a jalapeno bagel from 5th Ave Bagelry",
+    },
+    {
+        src: "/images/turkey-veggie-egg-sandwich.jpg",
+        alt: "A turkey, veggie, and egg sandwich at 5th Ave Bagelry",
+    },
+    {
+        src: "/images/prosciutto.jpeg",
+        alt: "A prosciutto sandwich at 5th Ave Bagelry",
+    },
+];
 
-   Photo left, copy right, mirroring the Hero's copy-left/photo-right so
-   the two read as a pair rather than the same block twice. */
+/* The homepage's pointer at /menu. The full menu is 119 items across five
+   boards, which is why it lives on its own route — this section's whole job
+   is to make that worth a click, not to reproduce any of it.
+
+   Photo left, copy right, mirroring the Hero's copy-left/photo-right so the
+   two read as a pair rather than the same block twice. */
 export default function MenuCta() {
     return (
         <section
@@ -43,21 +71,11 @@ export default function MenuCta() {
                     </Link>
                 </div>
 
-                {/* Capped while stacked. Left uncapped the photo hit 681x511
+                {/* Capped while stacked. Left uncapped the frame hit 681x511
                     at 728px wide and pushed the section to 939px tall — too
                     much weight for a pointer at another page. */}
                 <div className="w-full max-w-md lg:w-1/2 lg:max-w-none">
-                    {/* Fixed 4:3 crop so a portrait source can't make this
-                        section taller than the Hero above it. */}
-                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl shadow-lg">
-                        <Image
-                            src="/images/sausage-bacon-egg-cheese-croissant.jpg"
-                            alt="A 5th Ave Bagelry sausage bacon egg and cheese croissant."
-                            fill
-                            sizes="(min-width: 1024px) 34rem, 28rem"
-                            className="object-cover"
-                        />
-                    </div>
+                    <MenuSlideshow slides={SLIDES} />
                 </div>
             </div>
         </section>
