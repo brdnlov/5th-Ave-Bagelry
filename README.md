@@ -8,15 +8,15 @@ This is a small landing page, that redirects users to delivery options the store
 
 ## Features
 
-- [e.g. Mobile-friendly landing page]
-- [e.g. Menu showcase]
-- [e.g. Google Maps / location integration]
-- [e.g. SEO optimization for local search]
+- Mobile-friendly landing page
+- Menu showcase
+- Google Maps / location integration
+- SEO optimization for local search
 
 ## Tech Stack
 
-- Frontend: [e.g. Typescript, Javascript, CSS]
-- Hosting: [e.g. Vercel]
+- Frontend: Typescript, Javascript, CSS
+- Hosting: Vercel
 
 ## Live Site
 
