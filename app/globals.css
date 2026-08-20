@@ -64,6 +64,50 @@ body {
   }
 }
 
+/* Menu lists that read as one flowing run instead of stacked rows,
+   separated by the same red asterisk the shop paints on its boards.
+   This is what keeps ~113 items from becoming 113 lines.
+
+   The separator is drawn in CSS rather than written into the markup so
+   it never lands in a copy-paste, and `/ ""` gives it empty alt text so
+   screen readers skip it. The list still needs role="list" on the <ul>:
+   Safari drops list semantics as soon as list-style is removed. */
+@layer components {
+  /* Only the items go inline. The <ul> stays a block container, which is
+     what lets text-wrap below actually apply — text-wrap is a property of
+     block containers and would be inert on an inline <ul>. */
+  .menu-flow li {
+    display: inline;
+  }
+
+  /* The spaces around the asterisk are load-bearing, not cosmetic.
+     React renders the items with no whitespace between them
+     (<li>8 Grain</li><li>Egg</li>), and margin is not a line-break
+     opportunity — so without real spaces here the entire run is one
+     unbreakable word. Its min-content width then becomes the grid
+     column's floor and blows the layout past the viewport: 151px of
+     horizontal overflow at 320px wide.
+
+     The two spaces are different on purpose. `\A0` (non-breaking) glues
+     the asterisk to the item before it, so a wrapped line ends with "✳"
+     the way it would end with a comma, rather than starting with one.
+     `\20` (ordinary) is the break opportunity that does the real work.
+     Both are escaped because a literal space would be swallowed as the
+     terminator for the `\2733` escape. */
+  .menu-flow li + li::before {
+    content: "\A0\2733\20" / "";
+    color: var(--color-brand-red);
+    font-size: 0.75em;
+    vertical-align: 0.15em;
+  }
+
+  /* Keeps the last line of a wrapped run from stranding one item on its
+     own. Ignored by browsers that don't support it, which is fine. */
+  .menu-flow {
+    text-wrap: pretty;
+  }
+}
+
 /* Gentle bob for the hero's floating photo cards. */
 @keyframes float {
   0%,
