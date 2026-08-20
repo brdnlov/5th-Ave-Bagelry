@@ -25,6 +25,19 @@ const jsonLd = {
         longitude: SITE.address.lng,
     },
     hasMap: SITE.mapLinkUrl,
+    /* Spread rather than set to undefined: JSON.stringify would drop an
+       undefined value anyway, but an explicit absence keeps the shape
+       honest when hours are null. */
+    ...(SITE.hours
+        ? {
+              openingHoursSpecification: SITE.hours.map((slot) => ({
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: slot.dayOfWeek,
+                  opens: slot.opensISO,
+                  closes: slot.closesISO,
+              })),
+          }
+        : {}),
 };
 
 export default function Location() {

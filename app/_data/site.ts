@@ -2,6 +2,21 @@
    over from the pre-rebuild site (commit 2897892) rather than retyped, so
    a digit cannot drift. Navbar, Location and Footer all read from here. */
 
+export type OpeningHours = {
+    /* Human-facing. Rendered as written, so formatting is free to change. */
+    days: string;
+    opens: string;
+    closes: string;
+    /* Machine-facing twins for schema.org. Google wants ISO day names and
+       24-hour times, and keeping them separate means reformatting the
+       display strings above can never silently break the structured data
+       — the failure mode where a page still looks right but stops showing
+       hours in search results. */
+    dayOfWeek: string[];
+    opensISO: string;
+    closesISO: string;
+};
+
 export const SITE = {
     name: "5th Ave Bagelry",
     /* Longer form for the footer and metadata, where the city matters. */
@@ -42,8 +57,23 @@ export const SITE = {
        empty one, and without the annotation setting this back to null would
        be a type error. */
     hours: [
-        { days: "Mon-Sun", opens: "6:00AM", closes: "3:00PM" },
-    ] as { days: string; opens: string; closes: string }[] | null,
+        {
+            days: "Mon-Sun",
+            opens: "6:00AM",
+            closes: "3:00PM",
+            dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+            ],
+            opensISO: "06:00",
+            closesISO: "15:00",
+        },
+    ] as OpeningHours[] | null,
 
     /* Explicit rather than new Date().getFullYear(): on a statically built
        page that call freezes at build time anyway, so a named constant is
