@@ -2,33 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { ORDER_OPTIONS } from "../_data/order";
 
-const ORDER_OPTIONS = [
-    {
-        name: "UberEats",
-        tagline: "Delivered to your door",
-        href: "https://www.ubereats.com/store/5th-ave-bagelry/WRQNxV4HUHOKokgABkwyng",
-        image: "/images/ubereats-logo.jpg",
-        cta: "Order on UberEats",
-        external: true,
-    },
-    {
-        name: "DoorDash",
-        tagline: "Delivered to your door",
-        href: "https://www.doordash.com/store/5th-ave-bagelry-long-beach-23145319/",
-        image: "/images/doordash-logo.jpg",
-        cta: "Order on DoorDash",
-        external: true,
-    },
-    {
-        name: "Pickup",
-        tagline: "Call ahead, skip the line",
-        href: "tel:+15624996889",
-        image: null,
-        cta: "Call (562) 499-6889",
-        external: false,
-    },
-];
 
 export default function Order() {
     /* Which option has revealed its link. Mouse users get it on hover;
@@ -71,7 +46,7 @@ export default function Order() {
                     inside it, separated by hairlines rather than being their own
                     cards. overflow-hidden keeps the dividers and the hover tint
                     inside the rounded corners. */}
-                <div ref={panelRef} className="mt-10 overflow-hidden rounded-[2rem] bg-brand-charcoal sm:mt-12">
+                <div ref={panelRef} className="mt-10 overflow-hidden rounded-[2rem] bg-brand-brown bg-radial-[at_50%_0%] from-brand-tan/15 to-transparent to-70% ring-1 ring-inset ring-brand-tan/20 sm:mt-12">
                     <div className="grid divide-y divide-brand-cream/15 md:grid-cols-3 md:divide-x md:divide-y-0">
                         {ORDER_OPTIONS.map((option, index) => {
                             const isOpen = openIndex === index;
@@ -97,9 +72,8 @@ export default function Order() {
                                         className="flex h-full w-full flex-col items-center gap-4 p-6 transition-colors duration-300 hover:bg-brand-cream/5 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-brand-red lg:gap-5 lg:p-8"
                                     >
                                         <span
-                                            className={`flex flex-col items-center gap-4 transition duration-300 lg:gap-5 ${
-                                                isOpen ? "scale-95 opacity-40 blur-sm" : ""
-                                            }`}
+                                            className={`flex flex-col items-center gap-4 transition duration-300 lg:gap-5 ${isOpen ? "scale-95 opacity-40 blur-sm" : ""
+                                                }`}
                                         >
                                             {option.image ? (
                                                 <Image
@@ -145,9 +119,8 @@ export default function Order() {
                                         rather than left-1/2, which would shrink-wrap it to
                                         half the column and wrap the longer labels. */}
                                     <div
-                                        className={`absolute inset-0 flex items-center justify-center p-3 transition duration-300 ${
-                                            isOpen ? "opacity-100" : "pointer-events-none opacity-0"
-                                        }`}
+                                        className={`absolute inset-0 flex items-center justify-center p-3 transition duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+                                            }`}
                                     >
                                         {/* Same pill recipe as the Hero and Navbar CTAs.
                                             The bite is driven by `isOpen` rather than
@@ -159,9 +132,8 @@ export default function Order() {
                                             rel={option.external ? "noopener noreferrer" : undefined}
                                             tabIndex={isOpen ? undefined : -1}
                                             aria-hidden={!isOpen}
-                                            className={`bite-hover inline-flex min-h-12 items-center rounded-full bg-brand-red px-6 py-3 text-brand-cream ${
-                                                isOpen ? "[--bite-radius:1.3rem]" : ""
-                                            }`}
+                                            className={`bite-hover inline-flex min-h-12 items-center rounded-full bg-brand-red px-6 py-3 text-brand-cream ${isOpen ? "[--bite-radius:1.3rem]" : ""
+                                                }`}
                                         >
                                             {option.cta}
                                         </a>
