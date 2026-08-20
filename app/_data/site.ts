@@ -32,13 +32,18 @@ export const SITE = {
     mapLinkUrl:
         "https://www.google.com/maps/place/5th+Ave+Bagelry/@33.770266,-118.192551,16z/data=!4m6!3m5!1s0x80dd31384adcbd45:0x51d981123a6e6ee7!8m2!3d33.770266!4d-118.1925514!16s%2Fg%2F11bx1yv_fq",
 
-    /* null, not a guess. The pre-rebuild site never listed opening hours
-       and nothing in this repo records them. The Location section omits
-       the block entirely while this is null — wrong hours on a shopfront
-       page cost someone a wasted trip, so an absence beats an invention.
-       Fill it in as e.g. [{ days: "Mon–Fri", opens: "6:00", closes: "14:00" }]
-       and Location will render it. */
-    hours: null as { days: string; opens: string; closes: string }[] | null,
+    /* Supplied by Brandon — nothing in this repo or the pre-rebuild site
+       recorded opening hours, so these are not checkable from anything here
+       and are worth confirming against the shopfront before launch. Wrong
+       hours on a shopfront page cost someone a wasted trip.
+
+       The `| null` in the annotation is load-bearing: Location guards on
+       `SITE.hours &&` and drops the block entirely rather than rendering an
+       empty one, and without the annotation setting this back to null would
+       be a type error. */
+    hours: [
+        { days: "Mon-Sun", opens: "6:00AM", closes: "3:00PM" },
+    ] as { days: string; opens: string; closes: string }[] | null,
 
     /* Explicit rather than new Date().getFullYear(): on a statically built
        page that call freezes at build time anyway, so a named constant is
