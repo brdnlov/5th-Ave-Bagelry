@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Kumbh_Sans, Bevan } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
 
 const kumbhSans = Kumbh_Sans({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
