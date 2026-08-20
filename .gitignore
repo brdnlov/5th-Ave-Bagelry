@@ -34,9 +34,9 @@ yarn-error.log*
 .env*
 
 # AI assistant context files (local-only, not shared with the repo)
-# CLAUDE.md
-# AGENTS.md
-# session-summaries/
+CLAUDE.md
+AGENTS.md
+session-summaries/
 
 # vercel
 .vercel
