@@ -17,6 +17,7 @@ This is a small landing page, that redirects users to delivery options the store
 
 - Frontend: Typescript, Javascript, CSS
 - Hosting: Vercel
+- Previously Hosted: AWS
 
 ## Live Site
 
